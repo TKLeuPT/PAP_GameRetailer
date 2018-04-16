@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GameRetailer.Models.Jogo>
+@{
+    ViewBag.Title = "Comprar";
+
+}
+<br />
+<div class="container">
+    <div id="products" class="row list-group">
+        @foreach (var item in Model)
+        {
+
+            <div class="item  col-xs-4 col-lg-4">
+                <div class="thumbnail">
+
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading">
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </h4>
+                        <p class="group inner list-group-item-text">
+                            <b>Categoria:</b> @Html.DisplayFor(modelItem => item.Categoria)<br />
+                            <b>Ano:</b> @Html.DisplayFor(modelItem => item.AnoLancamento)<br />
+                            <b> Criado por:</b> @Html.DisplayFor(modelItem => item.Criadora)<br />
+                            <b> Disponivel no armazém:</b>  @Html.DisplayFor(modelItem => item.Armazem.Nome)<br />
+                            <b> Quantidade:</b>  @Html.DisplayFor(modelItem => item.Stock.Quantidade)
+
+                        </p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead">
+                                    @Html.DisplayFor(modelItem => item.Preco)€
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <button class="btn btn-success" type="submit" onclick="location.href='@Url.Action("Buy","Stocks", new { id = item.CodBarras })'">Comprar</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+</div>

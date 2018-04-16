@@ -1,0 +1,103 @@
+﻿@model IEnumerable<object>
+@{
+    ViewBag.Title = "Index";
+
+    List<GameRetailer.Models.CabecalhoGuia> lstcabecalho = Model.ToList()[0] as List<GameRetailer.Models.CabecalhoGuia>;
+    List<GameRetailer.Models.DetalheGuia> lstdetalhe = Model.ToList()[1] as List<GameRetailer.Models.DetalheGuia>;
+}
+
+<!-- Main content -->
+<section class="invoice">
+    <!-- title row -->
+    <div class="row">
+
+        <div class="col-xs-9">
+            <h2 class="page-header">
+                <b class="text-info">Game</b>Retailer
+                <small class="pull-right">Data:@DateTime.Now.Date.ToShortDateString()</small>
+            </h2>
+
+        </div>
+        <div class="col-xs-3 pull-right">
+            <h4>Guia</h4>
+
+            @Html.DropDownList("ddlGuias", new List<SelectListItem>() { new SelectListItem() { Text = "", Value = "" } }, htmlAttributes: new { @class = "form-control" })
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+            Local de Carga
+            <address>
+                @Html.Label(" ", new { id = "remetente", @style = "text-transform: uppercase;" })<br>
+                @Html.Label(" ", new { id = "moradaRe", @style = "text-transform: uppercase;" })<br>
+                @Html.Label(" ", new { id = "localidadeRe", @style = "text-transform: uppercase;" })<br>
+                @Html.Label(" ", new { id = "codpostalRe", @style = "text-transform: uppercase;" })<br>
+            </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+            Local de Descarga
+            <address>
+                @Html.Label(" ", new { id = "destinatario", @style = "text-transform: uppercase;" })<br>
+                @Html.Label(" ", new { id = "moradaDe", @style = "text-transform: uppercase;" })<br>
+                @Html.Label(" ", new { id = "localidadeDe", @style = "text-transform: uppercase;" })<br>
+                @Html.Label(" ", new { id = "codpostalDe", @style = "text-transform: uppercase;" })<br>
+            </address>
+        </div>
+        <div class="col-sm-4 invoice-col">
+            Distribuidora
+            <address>
+                @Html.Label(" ", new { id = "distribuidor", @style = "text-transform: uppercase;" })<br>
+                @Html.Label(" ", new { id = "marca", @style = "text-transform: uppercase;" })<br>
+                @Html.Label(" ", new { id = "modelo", @style = "text-transform: uppercase;" })<br>
+                @Html.Label(" ", new { id = "matricula", @style = "text-transform: uppercase;" })<br>
+            </address>
+        </div>
+
+    </div>
+    <div class="box">
+        <div class="box-header">
+            @*<h3 class="box-title">Armazens</h3>*@
+            <p>
+
+
+                @*@Html.ActionLink("Create New", "Create", "Detalhes")*@
+            </p>
+        </div>
+        <!-- /.row -->
+        <!-- Table row -->
+        <div class="box-body table-responsive no-padding">
+            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="datatable" class="table table-striped table-bordered table-hover" role="grid" aria-describedby="example1_info">
+                            <thead>
+                                <tr>
+                                    @*<th>Nº de detalhe</th>*@
+                                    <th>Quantidade</th>
+                                    <th>Jogo</th>
+                                    <th>Código de Barras</th>
+                                    <th>Preço</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-default fa fa-plus" type="button" onclick="location.href='@Url.Action("Create", "DetalheGuias")'"></button>
+        <button class="btn btn-default fa fa-print" type="button" onclick="print()"></button>
+        <!-- /.box-body -->
+    </div>
+</section>
+<!-- /.content -->
+<div class="clearfix"></div>
+@Scripts.Render("~/bundles/Guias")
+
