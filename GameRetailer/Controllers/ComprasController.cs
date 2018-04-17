@@ -21,6 +21,34 @@ namespace GameRetailer.Controllers
             return View(compra.ToList());
         }
 
+        public ActionResult Buy(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Stock stock = db.Stock.Find(id);
+            if (stock == null)
+            {
+                return HttpNotFound();
+            }
+            return View(stock);
+
+        }
+        //// POST: Stocks/Delete/5
+        [HttpPost, ActionName("Buy")]
+        [ValidateAntiForgeryToken]
+        public ActionResult BuyConfirmed(int id)
+        {
+            Stock stock = db.Stock.Find(id);
+            Compra compra = db.Compra.Find(id);
+            stock.Quantidade = stock.Quantidade - compra.Quantidade;
+            db.Compra.Add(compra);
+            db.SaveChanges();
+            return RedirectToAction("List");
+
+        }
+
         // GET: Compras/Details/5
         public ActionResult Details(int? id)
         {
@@ -40,7 +68,7 @@ namespace GameRetailer.Controllers
         public ActionResult Create()
         {
             ViewBag.NumArmazem = new SelectList(db.Armazem, "CodArmazem", "CodPostal");
-            ViewBag.CodBarras = new SelectList(db.Jogo, "CodBarras", "Criadora");
+            ViewBag.CodBarras = new SelectList(db.Jogo, "CodBarras", "Nome");
             return View();
         }
 
@@ -59,7 +87,7 @@ namespace GameRetailer.Controllers
             }
 
             ViewBag.NumArmazem = new SelectList(db.Armazem, "CodArmazem", "CodPostal", compra.NumArmazem);
-            ViewBag.CodBarras = new SelectList(db.Jogo, "CodBarras", "Criadora", compra.CodBarras);
+            ViewBag.CodBarras = new SelectList(db.Jogo, "CodBarras", "Nome", compra.CodBarras);
             return View(compra);
         }
 
@@ -76,7 +104,7 @@ namespace GameRetailer.Controllers
                 return HttpNotFound();
             }
             ViewBag.NumArmazem = new SelectList(db.Armazem, "CodArmazem", "CodPostal", compra.NumArmazem);
-            ViewBag.CodBarras = new SelectList(db.Jogo, "CodBarras", "Criadora", compra.CodBarras);
+            ViewBag.CodBarras = new SelectList(db.Jogo, "CodBarras", "Nome", compra.CodBarras);
             return View(compra);
         }
 
@@ -94,7 +122,7 @@ namespace GameRetailer.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.NumArmazem = new SelectList(db.Armazem, "CodArmazem", "CodPostal", compra.NumArmazem);
-            ViewBag.CodBarras = new SelectList(db.Jogo, "CodBarras", "Criadora", compra.CodBarras);
+            ViewBag.CodBarras = new SelectList(db.Jogo, "CodBarras", "Nome", compra.CodBarras);
             return View(compra);
         }
 
