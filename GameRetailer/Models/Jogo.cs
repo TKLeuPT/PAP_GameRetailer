@@ -9,9 +9,10 @@
 
 namespace GameRetailer.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+   
     public partial class Jogo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +21,7 @@ namespace GameRetailer.Models
             this.DetalheGuia = new HashSet<DetalheGuia>();
             this.Compra = new HashSet<Compra>();
         }
-    
+        
         public int CodBarras { get; set; }
         public string Criadora { get; set; }
         public string Categoria { get; set; }

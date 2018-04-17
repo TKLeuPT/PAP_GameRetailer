@@ -21,24 +21,39 @@ namespace GameRetailer.Controllers
             return View(compra.ToList());
         }
 
-        public ActionResult Buy(int? id)
+        public JsonResult FetchComprasById(int id) // its a GET, not a POST
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var compras = db.Compra.Select(d => new
+            {
+                ID = d.NumCompra,
+                d.DataCompra,
+                d.Armazem,
+                d.Jogo,
+                d.Quantidade
+            }).Where(x => x.ID == id);
+
+            return Json(compras, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Recibo(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Stock stock = db.Stock.Find(id);
-            if (stock == null)
+            Compra compra = db.Compra.Find(id);
+            if (compra == null)
             {
                 return HttpNotFound();
             }
-            return View(stock);
+            return View(compra);
 
         }
         //// POST: Stocks/Delete/5
-        [HttpPost, ActionName("Buy")]
+        [HttpPost, ActionName("Recibo")]
         [ValidateAntiForgeryToken]
-        public ActionResult BuyConfirmed(int id)
+        public ActionResult ReciboConfirmed(int id)
         {
             Stock stock = db.Stock.Find(id);
             Compra compra = db.Compra.Find(id);
@@ -77,13 +92,23 @@ namespace GameRetailer.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NumCompra,DataCompra,NumArmazem,CodBarras,Quantidade")] Compra compra)
+        public ActionResult Create([Bind(Include = "NumCompra,DataCompra,NumArmazem,CodBarras,Quantidade")] Compra compra, int? id)
         {
             if (ModelState.IsValid)
             {
-                db.Compra.Add(compra);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Stock stock = db.Stock.Find(id);
+                if (stock.Quantidade < compra.Quantidade)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Não existe stock suficiente!');window.location.href='../../Stocks/List';</script>");
+                }
+                else
+                {
+                    stock.Quantidade = stock.Quantidade - compra.Quantidade;
+                    db.Compra.Add(compra);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Compras");
+                }
+
             }
 
             ViewBag.NumArmazem = new SelectList(db.Armazem, "CodArmazem", "CodPostal", compra.NumArmazem);

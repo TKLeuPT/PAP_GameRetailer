@@ -40,10 +40,10 @@ namespace GameRetailer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult BuyConfirmed(int id)
         {
-            Stock stock = db.Stock.Find(id);
+            //Stock stock = db.Stock.Find(id);
            
-                stock.Quantidade -= 1;
-                db.SaveChanges();
+            //    stock.Quantidade -= 1;
+            //    db.SaveChanges();
                 return RedirectToAction("List");
    
         }

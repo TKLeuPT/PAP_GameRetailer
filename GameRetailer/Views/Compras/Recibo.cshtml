@@ -1,9 +1,9 @@
-﻿@model GameRetailer.Models.Stock
+﻿@model GameRetailer.Models.Compra
 @{
-    ViewBag.Title = "Buy";
+    ViewBag.Title = "Recibo";
 }
 
-<h2>Buy</h2>
+@*<h2>Buy</h2>*@
 <section class="invoice">
     <!-- title row -->
     <div class="row">
@@ -25,6 +25,10 @@
                 @Html.DisplayFor(model => model.Jogo.Armazem.Morada)<br>
                 @Html.DisplayFor(model => model.Jogo.Armazem.Localidade)<br>
                 @Html.DisplayFor(model => model.Jogo.Armazem.CodPostal)<br>
+                @*@Html.Label(" ", new { id = "remetente", @style = "text-transform: uppercase;" })<br>
+                    @Html.Label(" ", new { id = "moradaRe", @style = "text-transform: uppercase;" })<br>
+                    @Html.Label(" ", new { id = "localidadeRe", @style = "text-transform: uppercase;" })<br>
+                    @Html.Label(" ", new { id = "codpostalRe", @style = "text-transform: uppercase;" })<br>*@
             </address>
         </div>
         <!-- /.col -->
@@ -36,13 +40,15 @@
             </address>
         </div>
         <!-- /.col -->
-        @*<div class="col-sm-4 invoice-col">
-                <b>Invoice #007612</b><br>
-                <br>
-                <b>Order ID:</b> 4F3S8J<br>
-                <b>Payment Due:</b> 2/22/2014<br>
-                <b>Account:</b> 968-34567
-            </div>*@
+        <div class="col-sm-4 invoice-col">
+            <b>
+                Recibo nº @Html.DisplayFor(model => model.NumCompra)<br>
+            </b><br>
+            @*<br>
+            <b>Order ID:</b> 4F3S8J<br>
+            <b>Payment Due:</b> 2/22/2014<br>
+            <b>Account:</b> 968-34567*@
+        </div>
         <!-- /.col -->
     </div>
     <!-- /.row -->
@@ -61,7 +67,7 @@
                 <tbody>
                     <tr>
 
-                        <td> 1</td>
+                        <td>@Html.DisplayFor(model => model.Quantidade)</td>
                         <td>@Html.DisplayFor(model => model.Jogo.Nome)</td>
                         <td>@Html.DisplayFor(model => model.Jogo.Preco)€</td>
                     </tr>
@@ -71,28 +77,27 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-
-    <div class="row">
-        <!-- accepted payments column -->
-        <div class="col-xs-6">
-            <p class="lead">Métodos de Pagamento:</p>
-            <img src="~/admin-lte/img/credit/paypal2.png" />
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-6">
-            <div class="table-responsive">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Total:</th>
-                            <td>@Html.DisplayFor(model => model.Jogo.Preco)€</td>
-                        </tr>
-                    </tbody>
-                </table>
+    @*<div class="row">
+            <!-- accepted payments column -->
+            <div class="col-xs-6">
+                <p class="lead">Métodos de Pagamento:</p>
+                <img src="~/admin-lte/img/credit/paypal2.png" />
             </div>
-        </div>
-        <!-- /.col -->
-    </div>
+            <!-- /.col -->
+            <div class="col-xs-6">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Total:</th>
+                                <td>@Html.DisplayFor(model => model.Jogo.Preco)€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>*@
     <!-- /.row -->
     <!-- this row will not appear when printing -->
     <div class="row no-print">
@@ -104,7 +109,7 @@
                 <div class="form-actions no-color">
                     <a onclick="print()" class="btn btn-default pull-left"><i class="fa fa-print"></i> Imprimir</a>
 
-                    <input type="submit" value="Comprar" class="btn btn-success pull-right" />
+                    @*<input type="submit" value="Comprar" class="btn btn-success pull-right" />*@
                 </div>
 
             }

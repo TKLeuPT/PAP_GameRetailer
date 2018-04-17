@@ -9,6 +9,7 @@
 
 namespace GameRetailer.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -19,8 +20,9 @@ namespace GameRetailer.Models
         public int NumArmazem { get; set; }
         public int CodBarras { get; set; }
         public int Quantidade { get; set; }
-    
+        [JsonIgnore]
         public virtual Armazem Armazem { get; set; }
+        [JsonIgnore]
         public virtual Jogo Jogo { get; set; }
     }
 }
