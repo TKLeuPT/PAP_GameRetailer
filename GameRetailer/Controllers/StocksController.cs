@@ -21,33 +21,6 @@ namespace GameRetailer.Controllers
         {
             return View(db.Jogo.ToList());
         }
-        public ActionResult Buy(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Stock stock = db.Stock.Find(id);
-            if (stock == null)
-            {
-                return HttpNotFound();
-            }
-            return View(stock);
-
-        }
-        //// POST: Stocks/Delete/5
-        [HttpPost, ActionName("Buy")]
-        [ValidateAntiForgeryToken]
-        public ActionResult BuyConfirmed(int id)
-        {
-            //Stock stock = db.Stock.Find(id);
-           
-            //    stock.Quantidade -= 1;
-            //    db.SaveChanges();
-                return RedirectToAction("List");
-   
-        }
-
 
         // GET: Stocks
         public ActionResult Index()

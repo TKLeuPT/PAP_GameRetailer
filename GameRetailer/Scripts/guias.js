@@ -114,13 +114,13 @@
                                     $("#editar").on("click", function () {
                                         var id = $("#ID").children('td:first').text();
                                         console.log(id);
-                                        var url = "../DetalheGuias/Edit/" + id;
+                                        var url = "../GameRetailer/DetalheGuias/Edit/" + id;
                                         window.location.href = url;
                                     });
                                     $("#apagar").on("click", function () {
                                         var id = $("#ID").children('td:first').text();
                                         console.log(id);
-                                        var url = "../DetalheGuias/Delete/" + id;
+                                        var url = "../GameRetailer/DetalheGuias/Delete/" + id;
                                         window.location.href = url;
                                     });
                                 });

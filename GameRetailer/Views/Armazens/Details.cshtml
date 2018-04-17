@@ -1,17 +1,17 @@
 ﻿@model GameRetailer.Models.Armazem
 
-@{
-    ViewBag.Title = "Details";
-}
 
-<h2>Details</h2>
+@{
+    ViewBag.Title = "Armazém";
+}
+@*<h2>Details</h2>*@
 
 <div>
-    <h4>Armazem</h4>
+    <h4>Detalhes</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CodPostal)
+            @Html.DisplayName("Código Postal")
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Nome)
+            @Html.DisplayName("Nome")
         </dt>
 
         <dd>
@@ -43,16 +43,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Login.Email)
+            @Html.DisplayName("Proprietário")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Login.Email)
+            @Html.DisplayFor(model => model.Login.FName)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CodArmazem }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-default fa fa-edit" type="button" onclick="location.href='@Url.Action("Edit", new { id = Model.CodArmazem })'"></button>
+    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index")'">Voltar</button>
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.CodArmazem }) |*@
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>

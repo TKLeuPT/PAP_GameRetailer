@@ -59,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CodPostal)
+            @Html.DisplayName("Código Postal")
         </dt>
 
         <dd>
@@ -69,6 +69,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.NumCliente }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.NumCliente }) |*@
+    @*@Html.ActionLink("Back to List", "Index")*@
+    <button class="btn btn-default fa fa-edit" type="button" onclick="location.href='@Url.Action("Edit", new { id = Model.NumCliente })'"></button>
+
+    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index")'">Voltar</button>
+
 </p>

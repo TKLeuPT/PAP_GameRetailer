@@ -1,17 +1,15 @@
 ﻿@model GameRetailer.Models.CabecalhoGuia
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Cabecalho da Guia";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>CabecalhoGuia</h4>
+    <h4>Detalhes</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.DataEmissao)
+            @Html.DisplayName("Data de Emissão")
         </dt>
 
         <dd>
@@ -19,7 +17,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Armazem.CodPostal)
+            @Html.DisplayName("Código Postal")
         </dt>
 
         <dd>
@@ -53,6 +51,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.NumGuia }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-default fa fa-edit" type="button" onclick="location.href='@Url.Action("Edit", new { id = Model.NumGuia })'"></button>
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.NumGuia }) |*@
+    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index")'">Voltar</button>
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>

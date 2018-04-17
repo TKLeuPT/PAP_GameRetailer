@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<GameRetailer.Models.Armazem>
 
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Armazéns";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h4>Armazéns</h4>
+<hr />
 <div class="box box-info">
     <div class="box-header">
         @*<h3 class="box-title">Clientes</h3>*@
@@ -22,7 +20,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.CodPostal)
+                                    @Html.DisplayName("Código Postal")
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Nome)
@@ -34,13 +32,13 @@
                                     @Html.DisplayNameFor(model => model.Localidade)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Login.ID)
+                                    @Html.DisplayName("Proprietário")
                                 </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.Where(c=>c.Dono==c.Login.ID))
+                            @foreach (var item in Model.Where(c => c.Dono == c.Login.ID))
                             {
                                 <tr>
                                     <td>
@@ -56,12 +54,15 @@
                                         @Html.DisplayFor(modelItem => item.Localidade)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Login.ID)
+                                        @Html.DisplayFor(modelItem => item.Login.FName)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.CodArmazem }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.CodArmazem }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.CodArmazem })
+                                        <button class="btn btn-default fa fa-edit" type="button" onclick="location.href='@Url.Action("Edit", new { id = item.CodArmazem })'"></button>
+                                        <button class="btn btn-default fa fa-list" type="button" onclick="location.href='@Url.Action("Details", new { id = item.CodArmazem })'"></button>
+                                        <button class="btn btn-danger fa fa-close" type="button" onclick="location.href='@Url.Action("Delete", new { id = item.CodArmazem })'"></button>
+                                        @*@Html.ActionLink("Edit", "Edit", new { id = item.CodArmazem }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.CodArmazem }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.CodArmazem })*@
                                     </td>
                                 </tr>
                             }
@@ -77,29 +78,29 @@
 </div>
 @section Scripts{
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#datatable').DataTable({
-            "bJQueryUI": false,
-            "bAutoWidth": false,
-            "oLanguage": {
-                "sProcessing": "A processar...",
-                "sLengthMenu": "Mostrar _MENU_ registos",
-                "sZeroRecords": "Não foram encontrados resultados",
-                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
-                "sInfoEmpty": "Mostrando de 0 até 0 de 0 registos",
-                "sInfoFiltered": "(filtrado de _MAX_ registos no total)",
-                "sInfoPostFix": "",
-                "sSearch": "Procurar:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "Primeiro",
-                    "sPrevious": "Anterior",
-                    "sNext": "Seguinte",
-                    "sLast": "Último"
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').DataTable({
+                "bJQueryUI": false,
+                "bAutoWidth": false,
+                "oLanguage": {
+                    "sProcessing": "A processar...",
+                    "sLengthMenu": "Mostrar _MENU_ registos",
+                    "sZeroRecords": "Não foram encontrados resultados",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
+                    "sInfoEmpty": "Mostrando de 0 até 0 de 0 registos",
+                    "sInfoFiltered": "(filtrado de _MAX_ registos no total)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Procurar:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext": "Seguinte",
+                        "sLast": "Último"
+                    }
                 }
-            }
+            });
         });
-    });
-</script>
+    </script>
 }

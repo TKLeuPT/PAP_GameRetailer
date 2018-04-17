@@ -7,6 +7,8 @@
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
+<h4>Clientes</h4>
+<hr />
 <div class="box box-info">
     <div class="box-header">
         @*<h3 class="box-title">Clientes</h3>*@
@@ -75,8 +77,8 @@
                                         <button class="btn btn-default fa fa-close" type="button" onclick="location.href='@Url.Action("Delete", new { id = item.NumCliente })'"></button>
 
                                         @*@Html.ActionLink("Edit", "Edit", new { id = item.NumCliente }) |
-        @Html.ActionLink("Details", "Details", new { id = item.NumCliente }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.NumCliente })*@
+                                            @Html.ActionLink("Details", "Details", new { id = item.NumCliente }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.NumCliente })*@
                                     </td>
                                 </tr>
                             }
