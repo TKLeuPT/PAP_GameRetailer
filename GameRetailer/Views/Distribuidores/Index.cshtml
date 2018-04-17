@@ -55,9 +55,9 @@
                                     @Html.DisplayFor(modelItem => item.Email)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.CodDistribuidor }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.CodDistribuidor }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.CodDistribuidor })
+                                    <button class="btn btn-default fa fa-edit" type="button" onclick="location.href='@Url.Action("Edit", new { id = item.CodDistribuidor })'"></button>
+                                    <button class="btn btn-default fa fa-list" type="button" onclick="location.href='@Url.Action("Details", new { id = item.CodDistribuidor })'"></button>
+                                    <button class="btn btn-danger fa fa-close" type="button" onclick="location.href='@Url.Action("Delete", new { id = item.CodDistribuidor })'"></button>
                                 </td>
                             </tr>
                             }

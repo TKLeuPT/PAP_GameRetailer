@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<GameRetailer.Models.Jogo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Jogo";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h4>Jogos</h4>
+<hr />
 <div class="box box-info">
     <div class="box-header">
         @*<h3 class="box-title">Clientes</h3>*@
@@ -41,7 +38,7 @@
                                 </th>
                                 <th></th>
                             </tr>
-                            </thead>
+                        </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
@@ -65,13 +62,13 @@
                                         @Html.DisplayFor(modelItem => item.Armazem.CodArmazem)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.CodBarras }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.CodBarras }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.CodBarras })
+                                        <button class="btn btn-default fa fa-edit" type="button" onclick="location.href='@Url.Action("Edit", new { id = item.CodBarras })'"></button>
+                                        <button class="btn btn-default fa fa-list" type="button" onclick="location.href='@Url.Action("Details", new { id = item.CodBarras })'"></button>
+                                        <button class="btn btn-danger fa fa-close" type="button" onclick="location.href='@Url.Action("Delete", new { id = item.CodBarras })'"></button>
                                     </td>
                                 </tr>
                             }
-                            </tbody>
+                        </tbody>
                         <tfoot></tfoot>
                     </table>
                 </div>

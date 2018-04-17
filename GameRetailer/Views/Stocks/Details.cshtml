@@ -1,10 +1,9 @@
 ﻿@model GameRetailer.Models.Stock
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Stock";
 }
 
-<h2>Details</h2>
 
 <div>
     <h4>Stock</h4>
@@ -29,6 +28,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.NumJogo }) |
-    @Html.ActionLink("Back to List", "Index")
+
+    <button class="btn btn-default fa fa-edit" type="button" onclick="location.href='@Url.Action("Edit", new { id = Model.NumJogo })'"></button>
+
+    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index")'">Voltar</button>
+
+
 </p>

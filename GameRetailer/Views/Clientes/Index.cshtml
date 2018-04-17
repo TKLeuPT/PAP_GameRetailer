@@ -72,13 +72,9 @@
                                         @Html.DisplayFor(modelItem => item.CodPostal)
                                     </td>
                                     <td>
-                                        <button class="btn btn-default fa fa-pencil" type="button" onclick="location.href='@Url.Action("Edit", new { id = item.NumCliente })'"></button>
-                                        @*<button class="btn btn-default fa fa-list" type="button" onclick="location.href='@Url.Action("Details", new { id = item.NumCliente })'"></button>*@
-                                        <button class="btn btn-default fa fa-close" type="button" onclick="location.href='@Url.Action("Delete", new { id = item.NumCliente })'"></button>
-
-                                        @*@Html.ActionLink("Edit", "Edit", new { id = item.NumCliente }) |
-                                            @Html.ActionLink("Details", "Details", new { id = item.NumCliente }) |
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.NumCliente })*@
+                                        <button class="btn btn-default fa fa-edit" type="button" onclick="location.href='@Url.Action("Edit", new { id = item.NumCliente })'"></button>
+                                        <button class="btn btn-default fa fa-list" type="button" onclick="location.href='@Url.Action("Details", new { id = item.NumCliente })'"></button>
+                                        <button class="btn btn-danger fa fa-close" type="button" onclick="location.href='@Url.Action("Delete", new { id = item.NumCliente })'"></button>
                                     </td>
                                 </tr>
                             }

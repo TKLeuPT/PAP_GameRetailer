@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<GameRetailer.Models.DetalheGuia>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Detalhes da Guia";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<h4>Detalhes</h4>
+<hr />
 <table class="table">
     <tr>
         <th>
@@ -35,9 +34,9 @@
             @Html.DisplayFor(modelItem => item.Jogo.Criadora)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NumDGuia }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NumDGuia }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NumDGuia })
+            <button class="btn btn-default fa fa-edit" type="button" onclick="location.href='@Url.Action("Edit", new { id = item.NumDGuia })'"></button>
+            <button class="btn btn-default fa fa-list" type="button" onclick="location.href='@Url.Action("Details", new { id = item.NumDGuia })'"></button>
+            <button class="btn btn-danger fa fa-close" type="button" onclick="location.href='@Url.Action("Delete", new { id = item.NumDGuia })'"></button>
         </td>
     </tr>
 }

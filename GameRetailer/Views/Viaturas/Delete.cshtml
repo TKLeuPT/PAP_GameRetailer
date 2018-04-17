@@ -1,12 +1,11 @@
 ﻿@model GameRetailer.Models.Viatura
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Viatura";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Tem a certeza que deseja eliminar esta vuatura?</h3>
 <div>
     <h4>Viatura</h4>
     <hr />
@@ -40,9 +39,10 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Eliminar" class="btn btn-default" /> |
+        <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index")'">Voltar</button>
+
+    </div>
     }
 </div>

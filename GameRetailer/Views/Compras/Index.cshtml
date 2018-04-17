@@ -48,16 +48,9 @@
                                         @Html.DisplayFor(modelItem => item.Jogo.Nome)
                                     </td>
                                     <td>
-                                        <button class="btn btn-default fa fa-file-text-o" type="button" onclick="location.href='@Url.Action("Recibo", new { id = item.NumCompra })'"></button>
                                         <button class="btn btn-default fa fa-edit" type="button" onclick="location.href='@Url.Action("Edit", new { id = item.NumCompra })'"></button>
                                         <button class="btn btn-default fa fa-list" type="button" onclick="location.href='@Url.Action("Details", new { id = item.NumCompra })'"></button>
-                                       @* <button class="btn btn-danger fa fa-close" type="button" onclick="location.href='@Url.Action("Delete", new { id = item.NumCompra })'"></button>*@
-
-                                        @*@Html.ActionLink("Recibo", "Recibo", new { id = item.NumCompra })|
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.NumCompra }) |
-                                        @Html.ActionLink("Detalhes", "Details", new { id = item.NumCompra }) |
-                                        @Html.ActionLink("Apagar", "Delete", new { id = item.NumCompra })*@
-
+                                        <button class="btn btn-danger fa fa-close" type="button" onclick="location.href='@Url.Action("Delete", new { id = item.NumCompra })'"></button>
                                     </td>
                                 </tr>
                             }
