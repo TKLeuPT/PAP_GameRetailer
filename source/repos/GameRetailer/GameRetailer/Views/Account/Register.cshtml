@@ -1,0 +1,105 @@
+﻿@model GameRetailer.Models.Login
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="register-box">
+    <div class="register-logo">
+        <a href="@Url.Action("Index","Home")"><b class="text-info">Game</b>Retailer</a>
+    </div>
+
+    <div class="register-box-body">
+        <p class="login-box-msg">Registar um membro</p>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "Registeration Failed, fields.");
+            <div>
+                <fieldset>
+                    <div class="editor-label">@Html.LabelFor(u => u.Email)</div>
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(u => u.Email)
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                    <div class="editor-label">@Html.LabelFor(u => u.Password)</div>
+                    <div class="form-group has-feedback">
+                        @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(u => u.Password)
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="editor-label">@Html.Label("Nome")</div>
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(u => u.FName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(u => u.FName)
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                    </div>
+
+                    @if (User.IsInRole("Admin")) //whatever your admin role is called
+                    {
+                        <div class="editor-label">@Html.Label("Apelido")</div>
+                        <div class="form-group has-feedback">
+                            @Html.TextBoxFor(u => u.LName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(u => u.LName)
+                            <span class=" fa fa-user form-control-feedback"></span>
+                        </div>
+                        <div class="editor-label">@Html.Label("Departamento")</div>
+                        <div class="form-group has-feedback">
+                            @Html.DropDownListFor(u => u.UserType, new List<SelectListItem>
+{
+new SelectListItem { Text = "Administração", Value = "Admin" },
+new SelectListItem { Text = "Dep.Armazens", Value = "DArmazens" },
+new SelectListItem { Text = "Dep.Clientes", Value = "DClientes" },
+new SelectListItem { Text = "Dep.Distribuidores", Value = "DDistribuidores" },
+new SelectListItem { Text = "Dep.Jogos", Value = "DJogos" },
+new SelectListItem { Text = "Dep.Viaturas", Value = "DViaturas" },
+new SelectListItem { Text = "Dep.Guias", Value = "DGuias" },
+new SelectListItem { Text = "Dep.Desenvolvimento", Value = "DDesenvolvimento" },
+new SelectListItem { Text = "Dep.Suporte", Value = "DSuporte" }
+}, new { @class = "form-control" })
+                            @*@Html.TextBoxFor(u => u.UserType, new { @class = "form-control" })*@
+                            @Html.ValidationMessageFor(u => u.UserType)
+                            <span class="fa fa-info form-control-feedback"></span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="editor-label">@Html.Label("Apelido")</div>
+                        <div class="form-group has-feedback">
+                            @Html.TextBoxFor(u => u.LName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(u => u.LName)
+                            <span class=" fa fa-user form-control-feedback"></span>
+                        </div>
+                        <div class="editor-label">@Html.Label("Tipo de Utilizador")</div>
+                        <div class="form-group has-feedback">
+                            @Html.DropDownListFor(u => u.UserType, new List<SelectListItem>
+{
+
+new SelectListItem { Text = "Cliente", Value = "Cliente" },
+new SelectListItem { Text = "Armazem", Value = "Armazem" }
+}, new { @class = "form-control" })
+                            @*@Html.TextBoxFor(u => u.UserType, new { @class = "form-control" })*@
+                            @Html.ValidationMessageFor(u => u.UserType)
+                            <span class="fa fa-info form-control-feedback"></span>
+                        </div>
+                    }
+
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">Registar</button>
+                        </div>
+                        <!-- /.col -->
+
+                    </div>
+
+                </fieldset>
+            </div>
+
+        }
+    </div>
+</div>

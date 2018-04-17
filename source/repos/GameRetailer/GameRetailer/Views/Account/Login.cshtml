@@ -1,0 +1,62 @@
+﻿@using GameRetailer.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <div class="login-box">
+        <div class="login-logo">
+            <b class="text-info">Game</b>Retailer
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Entre para iniciar a sessão</p>
+           
+            @using (Html.BeginForm("Login", "Account",null, FormMethod.Post))
+            {
+                
+                @Html.ValidationSummary(true, "Login Failed, check details");
+                <div>
+                    <fieldset>
+                        <div class="editor-label">@Html.LabelFor(u => u.Email)</div>
+                        <div class="form-group has-feedback">
+                            @Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(u => u.Email)
+                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                        </div>
+                        <div class="editor-label">@Html.LabelFor(u => u.Password)</div>
+                        <div class="form-group has-feedback">
+                            @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(u => u.Password)
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        </div>
+                        <div class="row">
+
+                            <!-- /.col -->
+                            <div class="col-xs-12">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </fieldset>
+                </div>
+            }
+            <br />
+            @*<a href="#">I forgot my password</a><br>*@
+            <a href="@Url.Action("Register","Account")" class="text-center">Ainda não se registou? Registe-se!</a>
+
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
