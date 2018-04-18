@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+
+   
+
     $(function () {
         var ddlGuias = $("#ddlGuias");
         ddlGuias.empty().append('<option selected="selected" value="0" disabled = "disabled">A carregar guias...</option>');
@@ -28,7 +31,7 @@
         });
 
         $(document).ready(function () {
-
+            
         });
 
         $("#ddlGuias").change(function () {
@@ -123,6 +126,7 @@
                                         var url = "../GameRetailer/DetalheGuias/Delete/" + id;
                                         window.location.href = url;
                                     });
+                                    
                                 });
                                 $("#datatable tbody tr").mouseleave(function () {
 
@@ -156,4 +160,5 @@
     function print() {
         window.print();
     }
+   
 });

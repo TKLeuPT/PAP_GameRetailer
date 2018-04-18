@@ -5,24 +5,19 @@
     List<GameRetailer.Models.CabecalhoGuia> lstcabecalho = Model.ToList()[0] as List<GameRetailer.Models.CabecalhoGuia>;
     List<GameRetailer.Models.DetalheGuia> lstdetalhe = Model.ToList()[1] as List<GameRetailer.Models.DetalheGuia>;
 }
-
 <!-- Main content -->
 <section class="invoice">
     <!-- title row -->
     <div class="row">
-
         <div class="col-xs-9">
             <h2 class="page-header">
                 <b style="color:#00c0ef;">Game</b>Retailer
                 <small class="pull-right">Data:@DateTime.Now.Date.ToShortDateString()</small>
             </h2>
-
         </div>
         <div class="col-xs-3 pull-right">
             <h4>Guia</h4>
-
             @Html.DropDownList("ddlGuias", new List<SelectListItem>() { new SelectListItem() { Text = "", Value = "" } }, htmlAttributes: new { @class = "form-control" })
-
         </div>
         <!-- /.col -->
     </div>
@@ -56,13 +51,11 @@
                 @Html.Label(" ", new { id = "matricula", @style = "text-transform: uppercase;" })<br>
             </address>
         </div>
-
     </div>
     <div class="box">
         <div class="box-header">
             @*<h3 class="box-title">Armazens</h3>*@
             <p>
-
 
                 @*@Html.ActionLink("Create New", "Create", "Detalhes")*@
             </p>
@@ -85,7 +78,6 @@
                             </thead>
                             <tbody></tbody>
                             <tfoot>
-
                             </tfoot>
                         </table>
                     </div>
@@ -97,7 +89,22 @@
         <!-- /.box-body -->
     </div>
 </section>
+<button class="btn btn-default" type="button" onclick="apagarGuia()">Apagar Guia</button>
+
 <!-- /.content -->
 <div class="clearfix"></div>
 @Scripts.Render("~/bundles/Guias")
 
+<script type="text/javascript">
+    function apagarGuia() {
+
+        var id = $("#ddlGuias").val();
+
+        var url = "../GameRetailer/CabecalhoGuias/delete/" + id;
+        if (id > 0) {
+            window.location.href = url;
+        }
+        else
+            alert("Selecione uma guia!");
+    }
+</script>
