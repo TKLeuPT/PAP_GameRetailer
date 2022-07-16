@@ -9,23 +9,18 @@
 
 namespace GameRetailer.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Compra
     {
         public int NumCompra { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",
-              ApplyFormatInEditMode = true)]
         public System.DateTime DataCompra { get; set; }
         public int NumArmazem { get; set; }
         public int CodBarras { get; set; }
         public int Quantidade { get; set; }
-        [JsonIgnore]
+    
         public virtual Armazem Armazem { get; set; }
-        [JsonIgnore]
         public virtual Jogo Jogo { get; set; }
     }
 }

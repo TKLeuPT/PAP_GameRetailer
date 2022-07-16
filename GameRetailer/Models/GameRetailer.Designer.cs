@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\leona\source\repos\GameRetailer\GameRetailer\Models\GameRetailer.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\leona\Source\Repos\TKLeuPT\PAP_GameRetailer\GameRetailer\Models\GameRetailer.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

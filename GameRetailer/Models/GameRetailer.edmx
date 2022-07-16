@@ -45,7 +45,7 @@
             <PropertyRef Name="NumCompra" />
           </Key>
           <Property Name="NumCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DataCompra" Type="date" Nullable="false" />
+          <Property Name="DataCompra" Type="datetime" Nullable="false" />
           <Property Name="NumArmazem" Type="int" Nullable="false" />
           <Property Name="CodBarras" Type="int" Nullable="false" />
           <Property Name="Quantidade" Type="int" Nullable="false" />
@@ -240,10 +240,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="LoginByUsernamePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Email" Type="varchar" Mode="In" />
-          <Parameter Name="Password" Type="varchar" Mode="In" />
-        </Function>
         <EntityContainer Name="GameRetailerModelStoreContainer">
           <EntitySet Name="Armazem" EntityType="Self.Armazem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CabecalhoGuia" EntityType="Self.CabecalhoGuia" Schema="dbo" store:Type="Tables" />
@@ -598,7 +594,7 @@
             <PropertyRef Name="NumCompra" />
           </Key>
           <Property Name="NumCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DataCompra" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataCompra" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NumArmazem" Type="Int32" Nullable="false" />
           <Property Name="CodBarras" Type="Int32" Nullable="false" />
           <Property Name="Quantidade" Type="Int32" Nullable="false" />
@@ -633,136 +629,123 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GameRetailerModelStoreContainer" CdmEntityContainer="GameRetailerEntities">
-          <EntitySetMapping Name="Armazem">
-            <EntityTypeMapping TypeName="GameRetailerModel.Armazem">
-              <MappingFragment StoreEntitySet="Armazem">
-                <ScalarProperty Name="Dono" ColumnName="Dono" />
-                <ScalarProperty Name="CodArmazem" ColumnName="CodArmazem" />
-                <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="Morada" ColumnName="Morada" />
-                <ScalarProperty Name="Localidade" ColumnName="Localidade" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CabecalhoGuia">
-            <EntityTypeMapping TypeName="GameRetailerModel.CabecalhoGuia">
-              <MappingFragment StoreEntitySet="CabecalhoGuia">
-                <ScalarProperty Name="NumGuia" ColumnName="NumGuia" />
-                <ScalarProperty Name="DataEmissao" ColumnName="DataEmissao" />
-                <ScalarProperty Name="CodArmazem" ColumnName="CodArmazem" />
-                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
-                <ScalarProperty Name="NumCliente" ColumnName="NumCliente" />
-                <ScalarProperty Name="CodDistribuidor" ColumnName="CodDistribuidor" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="GameRetailerModel.Cliente">
-              <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
-                <ScalarProperty Name="Localidade" ColumnName="Localidade" />
-                <ScalarProperty Name="Morada" ColumnName="Morada" />
-                <ScalarProperty Name="NumCliente" ColumnName="NumCliente" />
-                <ScalarProperty Name="NIF" ColumnName="NIF" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="Telemovel" ColumnName="Telemovel" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DetalheGuia">
-            <EntityTypeMapping TypeName="GameRetailerModel.DetalheGuia">
-              <MappingFragment StoreEntitySet="DetalheGuia">
-                <ScalarProperty Name="NumDGuia" ColumnName="NumDGuia" />
-                <ScalarProperty Name="CodBarras" ColumnName="CodBarras" />
-                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
-                <ScalarProperty Name="NumGuia" ColumnName="NumGuia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Distribuidor">
-            <EntityTypeMapping TypeName="GameRetailerModel.Distribuidor">
-              <MappingFragment StoreEntitySet="Distribuidor">
-                <ScalarProperty Name="CodDistribuidor" ColumnName="CodDistribuidor" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="Telemovel" ColumnName="Telemovel" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Jogo">
-            <EntityTypeMapping TypeName="GameRetailerModel.Jogo">
-              <MappingFragment StoreEntitySet="Jogo">
-                <ScalarProperty Name="NumDArmazem" ColumnName="NumDArmazem" />
-                <ScalarProperty Name="CodBarras" ColumnName="CodBarras" />
-                <ScalarProperty Name="Criadora" ColumnName="Criadora" />
-                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
-                <ScalarProperty Name="AnoLancamento" ColumnName="AnoLancamento" />
-                <ScalarProperty Name="Preco" ColumnName="Preco" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Viatura">
-            <EntityTypeMapping TypeName="GameRetailerModel.Viatura">
-              <MappingFragment StoreEntitySet="Viatura">
-                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
-                <ScalarProperty Name="Marca" ColumnName="Marca" />
-                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
-                <ScalarProperty Name="Kms" ColumnName="Kms" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="LoginByUsernamePassword" FunctionName="GameRetailerModel.Store.LoginByUsernamePassword">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GameRetailerModel.LoginByUsernamePassword_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="LName" ColumnName="LName" />
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="Login">
-            <EntityTypeMapping TypeName="GameRetailerModel.Login">
-              <MappingFragment StoreEntitySet="Login">
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-                <ScalarProperty Name="LName" ColumnName="LName" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Stock">
-            <EntityTypeMapping TypeName="GameRetailerModel.Stock">
-              <MappingFragment StoreEntitySet="Stock">
-                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
-                <ScalarProperty Name="NumJogo" ColumnName="NumJogo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Compra">
-            <EntityTypeMapping TypeName="GameRetailerModel.Compra">
-              <MappingFragment StoreEntitySet="Compra">
-                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
-                <ScalarProperty Name="CodBarras" ColumnName="CodBarras" />
-                <ScalarProperty Name="NumArmazem" ColumnName="NumArmazem" />
-                <ScalarProperty Name="DataCompra" ColumnName="DataCompra" />
-                <ScalarProperty Name="NumCompra" ColumnName="NumCompra" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GameRetailerModelStoreContainer" CdmEntityContainer="GameRetailerEntities">
+    <EntitySetMapping Name="Armazem">
+      <EntityTypeMapping TypeName="IsTypeOf(GameRetailerModel.Armazem)">
+        <MappingFragment StoreEntitySet="Armazem">
+          <ScalarProperty Name="CodArmazem" ColumnName="CodArmazem" />
+          <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Morada" ColumnName="Morada" />
+          <ScalarProperty Name="Localidade" ColumnName="Localidade" />
+          <ScalarProperty Name="Dono" ColumnName="Dono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CabecalhoGuia">
+      <EntityTypeMapping TypeName="IsTypeOf(GameRetailerModel.CabecalhoGuia)">
+        <MappingFragment StoreEntitySet="CabecalhoGuia">
+          <ScalarProperty Name="NumGuia" ColumnName="NumGuia" />
+          <ScalarProperty Name="DataEmissao" ColumnName="DataEmissao" />
+          <ScalarProperty Name="CodArmazem" ColumnName="CodArmazem" />
+          <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+          <ScalarProperty Name="NumCliente" ColumnName="NumCliente" />
+          <ScalarProperty Name="CodDistribuidor" ColumnName="CodDistribuidor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="IsTypeOf(GameRetailerModel.Cliente)">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="NumCliente" ColumnName="NumCliente" />
+          <ScalarProperty Name="NIF" ColumnName="NIF" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Telemovel" ColumnName="Telemovel" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Morada" ColumnName="Morada" />
+          <ScalarProperty Name="Localidade" ColumnName="Localidade" />
+          <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalheGuia">
+      <EntityTypeMapping TypeName="IsTypeOf(GameRetailerModel.DetalheGuia)">
+        <MappingFragment StoreEntitySet="DetalheGuia">
+          <ScalarProperty Name="NumDGuia" ColumnName="NumDGuia" />
+          <ScalarProperty Name="CodBarras" ColumnName="CodBarras" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="NumGuia" ColumnName="NumGuia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Distribuidor">
+      <EntityTypeMapping TypeName="IsTypeOf(GameRetailerModel.Distribuidor)">
+        <MappingFragment StoreEntitySet="Distribuidor">
+          <ScalarProperty Name="CodDistribuidor" ColumnName="CodDistribuidor" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Telemovel" ColumnName="Telemovel" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jogo">
+      <EntityTypeMapping TypeName="IsTypeOf(GameRetailerModel.Jogo)">
+        <MappingFragment StoreEntitySet="Jogo">
+          <ScalarProperty Name="CodBarras" ColumnName="CodBarras" />
+          <ScalarProperty Name="Criadora" ColumnName="Criadora" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="AnoLancamento" ColumnName="AnoLancamento" />
+          <ScalarProperty Name="Preco" ColumnName="Preco" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="NumDArmazem" ColumnName="NumDArmazem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Viatura">
+      <EntityTypeMapping TypeName="IsTypeOf(GameRetailerModel.Viatura)">
+        <MappingFragment StoreEntitySet="Viatura">
+          <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Kms" ColumnName="Kms" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="IsTypeOf(GameRetailerModel.Login)">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="LName" ColumnName="LName" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stock">
+      <EntityTypeMapping TypeName="IsTypeOf(GameRetailerModel.Stock)">
+        <MappingFragment StoreEntitySet="Stock">
+          <ScalarProperty Name="NumJogo" ColumnName="NumJogo" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Compra">
+      <EntityTypeMapping TypeName="IsTypeOf(GameRetailerModel.Compra)">
+        <MappingFragment StoreEntitySet="Compra">
+          <ScalarProperty Name="NumCompra" ColumnName="NumCompra" />
+          <ScalarProperty Name="DataCompra" ColumnName="DataCompra" />
+          <ScalarProperty Name="NumArmazem" ColumnName="NumArmazem" />
+          <ScalarProperty Name="CodBarras" ColumnName="CodBarras" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -776,7 +759,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
