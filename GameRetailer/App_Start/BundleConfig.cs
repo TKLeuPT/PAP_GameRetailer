@@ -8,34 +8,34 @@ namespace GameRetailer
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            bundles.Add(new Bundle("~/bundles/jquery").Include(
                        "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            bundles.Add(new Bundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/Guias").Include(
+            bundles.Add(new Bundle("~/bundles/Guias").Include(
             "~/Scripts/guias.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+            bundles.Add(new Bundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
-            bundles.Add(new ScriptBundle("~/bundles/gameretailer").Include(
+            bundles.Add(new Bundle("~/bundles/gameretailer").Include(
                  "~/Scripts/GameRetailer.js"));
 
-            bundles.Add(new ScriptBundle("~/admin-lte/js").Include(
+            bundles.Add(new Bundle("~/admin-lte/js").Include(
                 "~/admin-lte/js/adminlte.js",
              "~/admin-lte/js/app.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+            bundles.Add(new Bundle("~/bundles/datatables").Include(
                    "~/Scripts/DataTables/jquery.dataTables.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new Bundle("~/Content/css").Include(
                        "~/Content/bootstrap.css",
                        "~/Content/bootstrap-theme.css",
                        "~/Content/site.css",
